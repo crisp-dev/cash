@@ -400,9 +400,9 @@
       return this;
     },
 
-    on: function (eventName, delegate, callback, options) {
-      options = {
-        passive: (options || {}).passive || false
+    on: function (eventName, delegate, callback, passive) {
+      var options = {
+        passive: passive || false
       };
 
       if (typeof delegate === "function") {
