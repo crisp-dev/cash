@@ -401,6 +401,10 @@
     },
 
     on: function (eventName, delegate, callback, passive) {
+      if (typeof callback === "boolean") {
+        passive = callback;
+      }
+
       var options = {
         passive: passive || false
       };
