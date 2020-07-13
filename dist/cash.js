@@ -400,13 +400,17 @@
       return this;
     },
 
-    on: function (eventName, delegate, callback) {
+    on: function (eventName, delegate, callback, options) {
+      options = {
+        passive: (options || {}).passive || false
+      };
+
       if (typeof delegate === "function") {
         callback = delegate;
 
         this.each(function (v) {
           registerEvent(cash(v), eventName, callback);
-          v.addEventListener(eventName, callback);
+          v.addEventListener(eventName, callback, options);
         });
         return this;
       } else {
@@ -431,7 +435,7 @@
           }
 
           registerEvent(cash(v), eventName, handler);
-          v.addEventListener(eventName, handler);
+          v.addEventListener(eventName, handler, options);
         });
 
         return this;
