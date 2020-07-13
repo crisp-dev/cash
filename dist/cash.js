@@ -400,21 +400,13 @@
       return this;
     },
 
-    on: function (eventName, delegate, callback, passive) {
-      if (typeof callback === "boolean") {
-        passive = callback;
-      }
-
-      var options = {
-        passive: passive || false
-      };
-
+    on: function (eventName, delegate, callback) {
       if (typeof delegate === "function") {
         callback = delegate;
 
         this.each(function (v) {
           registerEvent(cash(v), eventName, callback);
-          v.addEventListener(eventName, callback, options);
+          v.addEventListener(eventName, callback);
         });
         return this;
       } else {
@@ -439,7 +431,7 @@
           }
 
           registerEvent(cash(v), eventName, handler);
-          v.addEventListener(eventName, handler, options);
+          v.addEventListener(eventName, handler);
         });
 
         return this;
